@@ -1,32 +1,18 @@
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-function MovieBox({ movie, onSelect }) {
-  const [showDetail, setShowDetail] = useState(false);
+function MovieBox({ movie }) {
+  const navigate = useNavigate();
 
   return (
-    <div className="movie-box-container" style={{ position: "relative" }}>
-      <div
-        className="movie-box"
-        style={{
-          backgroundImage: `url(${movie.backdrop})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          position: "relative",
-        }}
-      >
-        <div>
-          <button
-            className="tovch"
-            style={{ position: "relative", zIndex: 2 }}
-            onClick={() => {
-              onSelect(movie);
-              setShowDetail(!showDetail);
-            }}
-          >
-            {movie.title}
-          </button>
-        </div>
-      </div>
+    <div
+      className="movie-box"
+      style={{
+        backgroundImage: `url(${movie.backdrop})`,
+      }}
+    >
+      <button className="tovch" onClick={() => navigate(`/movie/${movie.id}`)}>
+        {movie.title}
+      </button>
     </div>
   );
 }
